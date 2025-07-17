@@ -1,25 +1,36 @@
 package ddd.splearn.domain;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import static java.util.Objects.requireNonNull;
 
 @Getter
-@Builder
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Member {
 
-    @NonNull
     private String email;
 
-    @NonNull
     private String nickname;
 
-    @NonNull
     private String passwordHash;
 
-    @Builder.Default
-    private MemberStatus status = MemberStatus.PENDING;
+    private MemberStatus status;
+
+    public static Member create(MemberCreateRequest createRequest, PasswordEncoder passwordEncoder) {
+        Member member = new Member();
+
+        member.email = requireNonNull(createRequest.nickname());
+        member.nickname = requireNonNull(createRequest.nickname());
+        member.passwordHash = requireNonNull(passwordEncoder.encode(createRequest.password()));
+
+        member.status = MemberStatus.PENDING;
+
+        return member;
+    }
 
     public void activate() {
         if (status != MemberStatus.PENDING) {
@@ -35,5 +46,21 @@ public class Member {
         }
 
         this.status = MemberStatus.DEACTIVATED;
+    }
+
+    public void changeNickname(String nickname) {
+        this.nickname = requireNonNull(nickname);
+    }
+
+    public boolean verifyPassword(String password, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(password, this.passwordHash);
+    }
+    
+    public void changePassword(String password, PasswordEncoder passwordEncoder) {
+        this.passwordHash = passwordEncoder.encode(requireNonNull(password));
+    }
+
+    public boolean isActive() {
+        return this.status == MemberStatus.ACTIVE;
     }
 }
