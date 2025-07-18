@@ -1,5 +1,6 @@
 package ddd.splearn.domain;
 
+import ddd.splearn.domain.shared.Email;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +10,10 @@ import static java.util.Objects.requireNonNull;
 
 @Getter
 @ToString
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
-    private String email;
+    private Email email;
 
     private String nickname;
 
@@ -23,7 +24,7 @@ public class Member {
     public static Member create(MemberCreateRequest createRequest, PasswordEncoder passwordEncoder) {
         Member member = new Member();
 
-        member.email = requireNonNull(createRequest.nickname());
+        member.email = new Email(createRequest.email());
         member.nickname = requireNonNull(createRequest.nickname());
         member.passwordHash = requireNonNull(passwordEncoder.encode(createRequest.password()));
 
