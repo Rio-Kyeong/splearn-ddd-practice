@@ -1,9 +1,11 @@
 package ddd.splearn.domain.shared;
 
 import ddd.splearn.core.util.StringValidator;
+import jakarta.persistence.Embeddable;
 
 import java.util.regex.Pattern;
 
+@Embeddable
 public record Email (String address) {
 
     private static final Pattern EMAIL_PATTERN =
