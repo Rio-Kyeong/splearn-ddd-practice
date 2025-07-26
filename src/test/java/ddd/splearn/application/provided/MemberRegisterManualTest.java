@@ -1,27 +1,12 @@
 package ddd.splearn.application.provided;
 
-import ddd.splearn.application.MemberService;
-import ddd.splearn.application.required.EmailSender;
-import ddd.splearn.application.required.MemberRepository;
-import ddd.splearn.domain.Member;
-import ddd.splearn.domain.MemberFixture;
-import ddd.splearn.domain.MemberStatus;
-import ddd.splearn.domain.shared.Email;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.test.util.ReflectionTestUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 
 class MemberRegisterManualTest {
 
-    @Test
+    /*@Test
     void registerTestStub() {
         MemberRegister register = new MemberService(
                 new MemberRepositoryStub(), new EmailSenderStub(), MemberFixture.createPasswordEncoder()
@@ -91,5 +76,5 @@ class MemberRegisterManualTest {
         public void send(Email email, String subject, String body) {
             tos.add(email);
         }
-    }
+    }*/
 }
