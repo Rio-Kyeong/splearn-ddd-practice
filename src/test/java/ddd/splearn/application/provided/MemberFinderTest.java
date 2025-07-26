@@ -6,17 +6,26 @@ import ddd.splearn.domain.MemberFixture;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
 @Import(SplearnTestConfiguration.class)
-record MemberFinderTest(MemberFinder memberFinder, MemberRegister memberRegister, EntityManager entityManager) {
+class MemberFinderTest {
+
+    @Autowired
+    MemberFinder memberFinder;
+
+    @Autowired
+    MemberRegister memberRegister;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     void find() {

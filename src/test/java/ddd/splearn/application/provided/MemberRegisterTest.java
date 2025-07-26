@@ -5,6 +5,7 @@ import ddd.splearn.domain.*;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @SpringBootTest
 @Transactional
 @Import(SplearnTestConfiguration.class)
-public record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityManager) {
+class MemberRegisterTest {
+
+    @Autowired
+    MemberRegister memberRegister;
+
+    @Autowired
+    EntityManager entityManager;
 
     @Test
     void register() {
@@ -47,11 +54,11 @@ public record MemberRegisterTest(MemberRegister memberRegister, EntityManager en
 
     @Test
     void memberRegisterRequestFail() {
-        extracted(new MemberRegisterRequest("dtg9811@naver.com", "Rio", "secret"));
-        extracted(new MemberRegisterRequest("dtg9811@naver.com", "Bartholomew Cumberbatch", "secret"));
+        checkValidation(new MemberRegisterRequest("dtg9811@naver.com", "Rio", "secret"));
+        checkValidation(new MemberRegisterRequest("dtg9811@naver.com", "Bartholomew Cumberbatch", "secret"));
     }
 
-    private void extracted(MemberRegisterRequest invalid) {
+    private void checkValidation(MemberRegisterRequest invalid) {
         assertThatThrownBy(() -> memberRegister.register(invalid))
                 .isInstanceOf(ConstraintViolationException.class);
     }

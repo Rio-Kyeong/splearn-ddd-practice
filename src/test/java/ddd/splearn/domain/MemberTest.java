@@ -3,7 +3,8 @@ package ddd.splearn.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static ddd.splearn.domain.MemberFixture.*;
+import static ddd.splearn.domain.MemberFixture.createMemberRegisterRequest;
+import static ddd.splearn.domain.MemberFixture.createPasswordEncoder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
