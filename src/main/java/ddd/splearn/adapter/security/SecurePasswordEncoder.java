@@ -1,6 +1,6 @@
 package ddd.splearn.adapter.security;
 
-import ddd.splearn.domain.PasswordEncoder;
+import ddd.splearn.domain.member.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

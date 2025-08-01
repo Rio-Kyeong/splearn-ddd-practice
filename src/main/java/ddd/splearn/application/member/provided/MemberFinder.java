@@ -1,6 +1,6 @@
-package ddd.splearn.application.provided;
+package ddd.splearn.application.member.provided;
 
-import ddd.splearn.domain.Member;
+import ddd.splearn.domain.member.Member;
 
 /**
  * 회원을 조회한다

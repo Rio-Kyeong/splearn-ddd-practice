@@ -1,6 +1,6 @@
 package ddd.splearn.adapter.integration;
 
-import ddd.splearn.application.required.EmailSender;
+import ddd.splearn.application.member.required.EmailSender;
 import ddd.splearn.domain.shared.Email;
 import org.springframework.context.annotation.Fallback;
 import org.springframework.stereotype.Component;

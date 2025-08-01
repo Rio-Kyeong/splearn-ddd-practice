@@ -1,4 +1,4 @@
-package ddd.splearn.domain;
+package ddd.splearn.domain.member;
 
 public class MemberFixture {
 

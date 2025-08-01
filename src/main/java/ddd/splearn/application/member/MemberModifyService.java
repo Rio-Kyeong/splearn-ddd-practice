@@ -1,13 +1,10 @@
-package ddd.splearn.application;
+package ddd.splearn.application.member;
 
-import ddd.splearn.application.provided.MemberFinder;
-import ddd.splearn.application.provided.MemberRegister;
-import ddd.splearn.application.required.EmailSender;
-import ddd.splearn.application.required.MemberRepository;
-import ddd.splearn.domain.DuplicateEmailException;
-import ddd.splearn.domain.Member;
-import ddd.splearn.domain.MemberRegisterRequest;
-import ddd.splearn.domain.PasswordEncoder;
+import ddd.splearn.application.member.provided.MemberFinder;
+import ddd.splearn.application.member.provided.MemberRegister;
+import ddd.splearn.application.member.required.EmailSender;
+import ddd.splearn.application.member.required.MemberRepository;
+import ddd.splearn.domain.member.*;
 import ddd.splearn.domain.shared.Email;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +42,25 @@ public class MemberModifyService implements MemberRegister {
 
         return memberRepository.save(member);
     }
+
+    @Override
+    public Member deactivate(Long memberId) {
+        Member member = memberFinder.find(memberId);
+
+        member.deactivate();
+
+        return memberRepository.save(member);
+    }
+
+    @Override
+    public Member updateInfo(Long memberId, MemberInfoUpdateRequest memberInfoUpdateRequest) {
+        Member member = memberFinder.find(memberId);
+
+        member.updateInfo(memberInfoUpdateRequest);
+
+        return memberRepository.save(member);
+    }
+
 
     private void sendWelcomeEmail(Member member) {
         emailSender.send(member.getEmail(), "등록을 완료해주세요.", "아래 링크를 클릭해서 등록을 완료해주세요.");

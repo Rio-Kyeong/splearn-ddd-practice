@@ -1,4 +1,4 @@
-package ddd.splearn.application.provided;
+package ddd.splearn.application.member.provided;
 
 class MemberRegisterManualTest {
 

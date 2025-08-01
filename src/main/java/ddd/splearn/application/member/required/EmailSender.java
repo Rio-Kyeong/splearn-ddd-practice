@@ -1,4 +1,4 @@
-package ddd.splearn.application.required;
+package ddd.splearn.application.member.required;
 
 import ddd.splearn.domain.shared.Email;
 

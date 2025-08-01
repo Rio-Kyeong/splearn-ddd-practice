@@ -1,9 +1,8 @@
-package ddd.splearn.domain;
+package ddd.splearn.domain.member;
 
+import ddd.splearn.domain.AbstractEntity;
 import ddd.splearn.domain.shared.Email;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +27,10 @@ public class Member extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private MemberDetail detail;
+
     public static Member register(MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {
         Member member = new Member();
 
@@ -36,6 +39,8 @@ public class Member extends AbstractEntity {
         member.passwordHash = requireNonNull(passwordEncoder.encode(registerRequest.password()));
 
         member.status = MemberStatus.PENDING;
+
+        member.detail = MemberDetail.create();
 
         return member;
     }
@@ -46,6 +51,7 @@ public class Member extends AbstractEntity {
         }
 
         this.status = MemberStatus.ACTIVE;
+        this.detail.activate();
     }
 
     public void deactivate() {
@@ -54,10 +60,12 @@ public class Member extends AbstractEntity {
         }
 
         this.status = MemberStatus.DEACTIVATED;
+        this.detail.deactivate();
     }
 
-    public void changeNickname(String nickname) {
-        this.nickname = requireNonNull(nickname);
+    public void updateInfo(MemberInfoUpdateRequest updateRequest) {
+        this.nickname = requireNonNull(updateRequest.nickname());
+        this.detail.updateInfo(updateRequest);
     }
 
     public boolean verifyPassword(String password, PasswordEncoder passwordEncoder) {

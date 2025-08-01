@@ -1,8 +1,8 @@
 package ddd.splearn;
 
-import ddd.splearn.application.required.EmailSender;
-import ddd.splearn.domain.MemberFixture;
-import ddd.splearn.domain.PasswordEncoder;
+import ddd.splearn.application.member.required.EmailSender;
+import ddd.splearn.domain.member.MemberFixture;
+import ddd.splearn.domain.member.PasswordEncoder;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 

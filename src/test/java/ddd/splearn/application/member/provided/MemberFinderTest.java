@@ -1,8 +1,10 @@
-package ddd.splearn.application.provided;
+package ddd.splearn.application.member.provided;
 
 import ddd.splearn.SplearnTestConfiguration;
-import ddd.splearn.domain.Member;
-import ddd.splearn.domain.MemberFixture;
+import ddd.splearn.application.member.provided.MemberFinder;
+import ddd.splearn.application.member.provided.MemberRegister;
+import ddd.splearn.domain.member.Member;
+import ddd.splearn.domain.member.MemberFixture;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
-package ddd.splearn.application;
+package ddd.splearn.application.member;
 
-import ddd.splearn.application.provided.MemberFinder;
-import ddd.splearn.application.required.MemberRepository;
-import ddd.splearn.domain.Member;
+import ddd.splearn.application.member.provided.MemberFinder;
+import ddd.splearn.application.member.required.MemberRepository;
+import ddd.splearn.domain.member.Member;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
