@@ -64,6 +64,9 @@ public class Member extends AbstractEntity {
     }
 
     public void updateInfo(MemberInfoUpdateRequest updateRequest) {
+        if (status != MemberStatus.ACTIVE) {
+            throw new IllegalArgumentException("ACTIVE 상태가 아니므로 정보를 수정할 수 없습니다.");
+        }
         this.nickname = requireNonNull(updateRequest.nickname());
         this.detail.updateInfo(updateRequest);
     }

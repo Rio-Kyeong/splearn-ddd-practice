@@ -68,7 +68,6 @@ class MemberTest {
     }
 
 
-
     @Test
     void changePassword() {
         member.changePassword("verysecret2", passwordEncoder);
@@ -107,5 +106,13 @@ class MemberTest {
         assertThat(member.getNickname()).isEqualTo(request.nickname());
         assertThat(member.getDetail().getProfile().address()).isEqualTo(request.profileAddress());
         assertThat(member.getDetail().getIntroduction()).isEqualTo(request.introduction());
+    }
+
+    @Test
+    void updateInfoFail() {
+        assertThatThrownBy(() -> {
+            var request = new MemberInfoUpdateRequest("Rio", "rio9811", "introduce");
+            member.updateInfo(request);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }
