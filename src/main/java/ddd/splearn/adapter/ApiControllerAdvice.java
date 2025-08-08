@@ -28,6 +28,7 @@ public class ApiControllerAdvice extends ResponseEntityExceptionHandler {
 
         problemDetail.setProperty("timestamp", LocalDateTime.now());
         problemDetail.setProperty("exception", exception.getClass().getSimpleName());
+
         return problemDetail;
     }
 }

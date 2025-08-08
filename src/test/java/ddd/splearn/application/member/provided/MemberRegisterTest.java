@@ -1,6 +1,7 @@
 package ddd.splearn.application.member.provided;
 
 import ddd.splearn.SplearnTestConfiguration;
+import ddd.splearn.domain.member.MemberInfoUpdateRequest;
 import ddd.splearn.domain.member.*;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintViolationException;
